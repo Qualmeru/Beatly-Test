@@ -14,8 +14,11 @@ module.exports = React.createClass({
             url: "src/api/messages.json",
             dataType: 'json',
             //cache: false,
-            success: function (data) {
-                this.setState({ messages: data });
+            success: function (json) {
+                json.data.sort(function (a, b) {
+                    return new Date(b.date) - new Date(a.date)
+                });
+                this.setState({ messages: json.data });
             }.bind(this),
             error: function (xhr, status, err) {
                 //console.error(this.props.url, status, err.toString());
@@ -23,18 +26,20 @@ module.exports = React.createClass({
         });
     },
     render: function() {
-        return <div><h1>Beatly Test</h1>
+        return <div>
         
-        <div className="list-group">
+        <div className="list-group col-md-4 row col-md-offset-4">
+    <h1 className="vertical-center-row">Beatly Test</h1>
             {this.renderMessages()}
         </div></div>
     },
     renderMessages: function () {
-        if (this.state.messages.data) {
-            return this.state.messages.data.map(function (message) {
+        if (this.state.messages) {
+            return this.state.messages.map(function (message) {
                 return <a href="#" className="list-group-item" key={message.id } > 
               <b>{message.subject}</b>
                  <p>{message.description}</p>
+                <p>{message.date}</p>
              </a>
             });
         }
