@@ -6,6 +6,8 @@ Beatly Test
 ---
 
 ###Getting Started###
+Download and install node package manager(node.js)
+https://nodejs.org/en/download/
 
 Getting started with this repo.
 
