@@ -4,6 +4,7 @@
     {
       "id": 1,
       "subject": "Hej",
+      "sender": "Isabella Influencer",
       "description": "Hej Hur är det?",
       "date": "2013/07/10 15:30"
 
@@ -11,12 +12,14 @@
     {
       "id": 2,
       "subject": "Tralala",
+      "sender": "Katarina at Big Brand",
       "description": "vem är du?",
       "date": "2014/08/12 17:01"
 
     },
     {
       "id": 3,
+      "sender": "Katarina at Big Brand",
       "subject": "Jag ville fråga en sak",
       "description": "Hur mår du?",
       "date": "2016/01/06 14:30"
