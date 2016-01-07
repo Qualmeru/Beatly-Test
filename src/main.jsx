@@ -77,11 +77,11 @@ module.exports = React.createClass({
       </div>
       <div className="form-group">
           <span>Subject</span>
-          <input className="form-control" type="text" id="txtSubject" onChange={this.subjectChange} />
+          <input className="form-control" type="text" value={this.state.subject} id="txtSubject" onChange={this.subjectChange} />
       </div>
       <div className="form-group">
           <span>Message</span>
-          <textarea className="form-control" id="txtMessage" onChange={this.messageChange}></textarea>
+          <textarea className="form-control" id="txtMessage" value={this.state.message} onChange={this.messageChange}></textarea>
       </div>
       <div className="form-group"><button type="submit" className="btn btn-default">Send message</button></div>
     </form>
@@ -111,10 +111,13 @@ module.exports = React.createClass({
         }
         noom++;
         var now = new Date(Date.now());
-        this.state.messages.push({ "id": noom, "subject": subject, "sender": sender, "message": message, "date": now.getFullYear() +"/" + now.getMonth() + 1 +"/" + now.getDate() +" "+ now.getHours() +":"+ now.getMinutes() });
+        this.state.messages.push({ "id": noom, "subject": subject, "sender": sender, "description": message, "date": now.getFullYear() +"/" + now.getMonth() + 1 +"/" + now.getDate() +" "+ now.getHours() +":"+ now.getMinutes() });
         console.log(this.state.messages);
        // this.props.onMessageSubmit({"id": noom++, "subject": subject, "sender": sender, "message": message})
         this.setState({ sender: '', subject: '', message: '' });
+        this.state.messages.sort(function (a, b) {
+            return new Date(b.date) - new Date(a.date)
+        });
         this.setState({ messages: this.state.messages });
         $(".bs-example-modal-sm").modal("hide");
         this.forceUpdate();
